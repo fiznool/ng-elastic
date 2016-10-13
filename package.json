@@ -1,0 +1,35 @@
+{
+  "name": "angular2-elastic",
+  "version": "1.0.0",
+  "description": "Angular 2 directive to auto expand textareas according to their contents.",
+  "module": "index.js",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fiznool/angular2-elastic.git"
+  },
+  "keywords": [
+    "textarea",
+    "angular",
+    "ionic",
+    "angular2",
+    "ionic2",
+    "elastic"
+  ],
+  "author": "Tom Spencer <fiznool@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fiznool/angular2-elastic/issues"
+  },
+  "scripts": {
+    "prepublish": "tsc"
+  },
+  "typings": "./index.d.ts",
+  "homepage": "https://github.com/fiznool/angular2-elastic#readme",
+  "devDependencies": {
+    "@angular/core": "^2.1.0",
+    "rxjs": "^5.0.0-beta.12",
+    "typescript": "^2.0.3",
+    "zone.js": "^0.6.25"
+  }
+}
