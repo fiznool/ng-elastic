@@ -10,6 +10,12 @@ Automatically grows and shrinks textareas based on their content. Supports both 
 npm install angular2-elastic
 ```
 
+## Quick Start
+
+1. Import the `ElasticModule`.
+2. Add the directive `fz-elastic` to your `textarea` or `ion-textarea`.
+3. Watch as your textareas auutomatically grow and shrink depending on their content.
+
 ## Usage
 
 ### Angular 2
