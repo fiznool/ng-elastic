@@ -5,7 +5,7 @@ interface CSSStyleDeclarationWithResize extends CSSStyleDeclaration {
 }
 
 @Directive({
-  selector: '[elastic]'
+  selector: '[fz-elastic]'
 })
 
 export class ElasticDirective {
