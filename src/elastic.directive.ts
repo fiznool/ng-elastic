@@ -1,4 +1,5 @@
 import { ElementRef, HostListener, Directive} from '@angular/core';
+import { Observable } from 'rxjs/Rx';
 
 interface CSSStyleDeclarationWithResize extends CSSStyleDeclaration {
   resize: string
@@ -24,6 +25,11 @@ export class ElasticDirective {
     const style: CSSStyleDeclarationWithResize = this.textareaEl.style as CSSStyleDeclarationWithResize;
     style.overflow = 'hidden';
     style.resize = 'none';
+
+    Observable.fromEvent(window, 'resize')
+      .debounceTime(250)
+      .distinctUntilChanged((evt:any) => evt.timeStamp)
+      .subscribe(() => this.adjust());
   }
 
   ngAfterContentInit() {
