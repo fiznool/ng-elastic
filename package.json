@@ -27,11 +27,11 @@
   "typings": "./index.d.ts",
   "homepage": "https://github.com/fiznool/angular2-elastic#readme",
   "devDependencies": {
-    "@angular/compiler": "2.1.0",
-    "@angular/compiler-cli": "2.1.0",
-    "@angular/core": "2.1.0",
-    "rxjs": "5.0.0-beta.12",
-    "typescript": "2.0.3",
-    "zone.js": "0.6.25"
+    "@angular/compiler": "2.1.2",
+    "@angular/compiler-cli": "2.1.2",
+    "@angular/core": "2.1.2",
+    "rxjs": "^5.0.0-beta.12",
+    "typescript": "2.0.9",
+    "zone.js": "0.6.26"
   }
 }
