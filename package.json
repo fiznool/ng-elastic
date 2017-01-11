@@ -1,6 +1,6 @@
 {
   "name": "angular2-elastic",
-  "version": "0.11.1",
+  "version": "0.12.0",
   "description": "Angular 2 directive to auto expand textareas according to their contents.",
   "module": "index.js",
   "main": "index.js",
@@ -27,11 +27,11 @@
   "typings": "./index.d.ts",
   "homepage": "https://github.com/fiznool/angular2-elastic#readme",
   "devDependencies": {
-    "@angular/compiler": "2.1.2",
-    "@angular/compiler-cli": "2.1.2",
-    "@angular/core": "2.1.2",
-    "rxjs": "^5.0.0-beta.12",
-    "typescript": "2.0.9",
-    "zone.js": "0.6.26"
+    "@angular/compiler": "2.4.2",
+    "@angular/compiler-cli": "2.4.2",
+    "@angular/core": "2.4.2",
+    "rxjs": "5.0.3",
+    "typescript": "2.1.4",
+    "zone.js": "0.7.4"
   }
 }

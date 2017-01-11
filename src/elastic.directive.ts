@@ -1,9 +1,5 @@
-import { ElementRef, HostListener, Directive} from '@angular/core';
+import { ElementRef, HostListener, Directive, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-
-interface CSSStyleDeclarationWithResize extends CSSStyleDeclaration {
-  resize: string
-}
 
 @Directive({
   selector: '[fz-elastic]'
@@ -22,7 +18,7 @@ export class ElasticDirective {
   setupTextarea(textareaEl: HTMLTextAreaElement) {
     this.textareaEl = textareaEl;
 
-    const style: CSSStyleDeclarationWithResize = this.textareaEl.style as CSSStyleDeclarationWithResize;
+    const style = this.textareaEl.style;
     style.overflow = 'hidden';
     style.resize = 'none';
 
@@ -32,7 +28,7 @@ export class ElasticDirective {
       .subscribe(() => this.adjust());
   }
 
-  ngAfterContentInit() {
+  ngAfterViewInit() {
     if(this.isTextarea(this.element.nativeElement)) {
       this.setupTextarea(this.element.nativeElement);
       return;
@@ -53,7 +49,7 @@ export class ElasticDirective {
     this.adjust();
   }
 
-  ngAfterContentChecked(): void {
+  ngAfterViewChecked(): void {
     this.adjust();
   }
 

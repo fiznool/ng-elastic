@@ -11,4 +11,5 @@ Thumbs.db
 *.map
 *.d.ts
 *.ngfactory.ts
+*.ngsummary.json
 *.metadata.json
