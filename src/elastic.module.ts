@@ -6,4 +6,4 @@ import { ElasticDirective } from './elastic.directive';
   declarations: [ ElasticDirective ],
   exports: [ ElasticDirective ]
 })
-export class Elastic { }
+export class ElasticModule { }

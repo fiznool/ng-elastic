@@ -26,7 +26,7 @@ npm install angular2-elastic
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
-import { Elastic }       from 'angular2-elastic';
+import { ElasticModule } from 'angular2-elastic';
 
 import { AppComponent }  from './app.component';
 
@@ -34,7 +34,7 @@ import { AppComponent }  from './app.component';
   imports: [
     BrowserModule,
     FormsModule,
-    Elastic
+    ElasticModule
   ],
   declarations: [
     AppComponent
