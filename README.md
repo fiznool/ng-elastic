@@ -20,6 +20,8 @@ npm install angular2-elastic
 
 ### Angular 2
 
+See the [sample repo](https://github.com/fiznool/angular2-elastic-demo) for a full reference example.
+
 **1. Import the `ElasticModule`:**
 
 ``` ts
@@ -61,6 +63,8 @@ That's it! Your textarea will now grow and shrink as you type.
 The textarea will also respond to changes from any one or two way bindings that are setup, e.g. with `[(ngModel)]`.
 
 ### Ionic 2
+
+See the [sample repo](https://github.com/fiznool/angular2-elastic-demo-ionic) for a full reference example.
 
 1. Import the module as above.
 2. Use the directive on an `ion-textarea` instead:
