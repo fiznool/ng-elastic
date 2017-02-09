@@ -73,6 +73,8 @@ See the [sample repo](https://github.com/fiznool/angular2-elastic-demo-ionic) fo
 <ion-textarea fz-elastic></ion-textarea>
 ```
 
+Please note that Ionic changed the layout of their textarea components in 2.0.0-rc.5. As a result, please ensure you upgrade to v0.13.0 or later of this library if you upgrade to Ionic 2.0.0-rc.5 or above.
+
 ## License
 
 MIT
