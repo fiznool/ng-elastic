@@ -1,14 +1,35 @@
-import { ElementRef, HostListener, Directive, AfterViewInit, AfterViewChecked } from '@angular/core';
+import { ElementRef, HostListener, Directive, AfterViewInit, Optional } from '@angular/core';
+import { NgModel } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 
 @Directive({
   selector: '[fz-elastic]'
 })
 
-export class ElasticDirective {
+export class ElasticDirective implements AfterViewInit {
   textareaEl: HTMLTextAreaElement;
 
-  constructor(public element: ElementRef){
+  private previousScrollHeight = 0;
+
+  constructor(public element: ElementRef, @Optional() public model: NgModel) {
+    if (!model) {
+      return;
+    }
+
+    // Hijack NgModels ControlValueAccessor to detect when model is updated.
+    let self = this;
+    let originalWriteValue = model.valueAccessor.writeValue;
+    function writeValue(obj: any) {
+      if (originalWriteValue) {
+        // Invoke the original writeValue function.
+        originalWriteValue.call(this, obj);
+      }
+
+      // Adjust the textarea size.
+      self.adjust();
+    }
+
+    model.valueAccessor.writeValue = writeValue;
   }
 
   isTextarea(el: HTMLElement) {
@@ -24,19 +45,18 @@ export class ElasticDirective {
 
     Observable.fromEvent(window, 'resize')
       .debounceTime(250)
-      .distinctUntilChanged((evt:any) => evt.timeStamp)
       .subscribe(() => this.adjust());
   }
 
   ngAfterViewInit() {
-    if(this.isTextarea(this.element.nativeElement)) {
+    if (this.isTextarea(this.element.nativeElement)) {
       this.setupTextarea(this.element.nativeElement);
       return;
     }
 
     const children: HTMLElement[] = Array.from(this.element.nativeElement.children) as HTMLElement[];
     const textareaEl = children.find(el => this.isTextarea(el));
-    if(textareaEl) {
+    if (textareaEl) {
       this.setupTextarea(textareaEl as HTMLTextAreaElement);
       return;
     }
@@ -49,12 +69,13 @@ export class ElasticDirective {
     this.adjust();
   }
 
-  ngAfterViewChecked(): void {
-    this.adjust();
-  }
-
   adjust(): void {
+    if (!this.textareaEl || this.previousScrollHeight === this.textareaEl.scrollHeight) {
+      return;
+    }
+
     this.textareaEl.style.height = 'auto';
     this.textareaEl.style.height = this.textareaEl.scrollHeight + "px";
+    this.previousScrollHeight = this.textareaEl.scrollHeight;
   }
 }
