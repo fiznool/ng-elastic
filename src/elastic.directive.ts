@@ -1,4 +1,4 @@
-import { ElementRef, HostListener, Directive, AfterViewInit, Optional } from '@angular/core';
+import { ElementRef, HostListener, Directive, AfterViewInit, Optional, NgZone } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 
@@ -11,7 +11,7 @@ export class ElasticDirective implements AfterViewInit {
 
   private previousScrollHeight = 0;
 
-  constructor(public element: ElementRef, @Optional() public model: NgModel) {
+  constructor(public element: ElementRef, private ngZone: NgZone, @Optional() public model: NgModel) {
     if (!model) {
       return;
     }
@@ -43,9 +43,11 @@ export class ElasticDirective implements AfterViewInit {
     style.overflow = 'hidden';
     style.resize = 'none';
 
-    Observable.fromEvent(window, 'resize')
-      .debounceTime(250)
-      .subscribe(() => this.adjust());
+        this.ngZone.runOutsideAngular(() => {
+            Observable.fromEvent(window, 'resize')
+                .debounceTime(100)
+                .subscribe(() => this.adjust());
+        });
   }
 
   ngAfterViewInit() {
