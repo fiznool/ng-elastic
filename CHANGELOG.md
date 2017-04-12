@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.0-beta.1] - 2017-04-12
+### Changed
+- Performance improvements as per PR #13
+- Name changed from `angular2-elastic` to `ng-elastic` to better align with Angular release cycle
+
 ## [0.13.0] - 2017-01-11
 ### Breaking Change
 - Exports `ElasticModule` instead of `Elastic`. If upgrading, please update your imports, change `Elastic` to `ElasticModule`:

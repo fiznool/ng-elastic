@@ -1,13 +1,15 @@
-# Angular2-Elastic
+# ng-elastic
 
-Automatically grows and shrinks textareas based on their content. Supports both regular Angular 2 `<textarea>` and Ionic 2 `<ion-textarea>` controls.
+Automatically grows and shrinks textareas based on their content. Supports both regular Angular 2+ `<textarea>` and Ionic 2+ `<ion-textarea>` controls.
 
 [See the demo here](http://embed.plnkr.co/8a3hvdzIIUs3X1nOKPtK?show=preview).
+
+**Important Note**: this module supports Angular / Ionic versions 2 and above only. For Angular 1.x / Ionic 1.x, please see the excellent [angular-elastic](https://github.com/monospaced/angular-elastic) library, which this module was inspired by.
 
 ## Installation
 
 ```
-npm install angular2-elastic
+npm install ng-elastic
 ```
 
 ## Quick Start
@@ -18,9 +20,9 @@ npm install angular2-elastic
 
 ## Usage
 
-### Angular 2
+### Angular 2+
 
-See the [sample repo](https://github.com/fiznool/angular2-elastic-demo) for a full reference example.
+See the [sample repo](https://github.com/fiznool/ng-elastic-demo) for a full reference example.
 
 **1. Import the `ElasticModule`:**
 
@@ -28,7 +30,7 @@ See the [sample repo](https://github.com/fiznool/angular2-elastic-demo) for a fu
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
-import { ElasticModule } from 'angular2-elastic';
+import { ElasticModule } from 'ng-elastic';
 
 import { AppComponent }  from './app.component';
 
@@ -64,7 +66,7 @@ The textarea will also respond to changes from any one or two way bindings that 
 
 ### Ionic 2
 
-See the [sample repo](https://github.com/fiznool/angular2-elastic-demo-ionic) for a full reference example.
+See the [sample repo](https://github.com/fiznool/ng-elastic-demo-ionic) for a full reference example.
 
 1. Import the module as above.
 2. Use the directive on an `ion-textarea` instead:
@@ -72,8 +74,6 @@ See the [sample repo](https://github.com/fiznool/angular2-elastic-demo-ionic) fo
 ``` html
 <ion-textarea fz-elastic></ion-textarea>
 ```
-
-Please note that Ionic changed the layout of their textarea components in 2.0.0-rc.5. As a result, please ensure you upgrade to v0.13.0 or later of this library if you upgrade to Ionic 2.0.0-rc.5 or above.
 
 ## License
 
