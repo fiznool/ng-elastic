@@ -17,6 +17,8 @@ export class ElasticDirective implements AfterViewInit {
     }
 
     // Hijack NgModels ControlValueAccessor to detect when model is updated.
+    // This is more performant than listening for model changes
+    // with angular's change detection cycle.
     let self = this;
     let originalWriteValue = model.valueAccessor.writeValue;
     function writeValue(obj: any) {
@@ -39,15 +41,21 @@ export class ElasticDirective implements AfterViewInit {
   setupTextarea(textareaEl: HTMLTextAreaElement) {
     this.textareaEl = textareaEl;
 
+    // Set some necessary styles
     const style = this.textareaEl.style;
     style.overflow = 'hidden';
     style.resize = 'none';
 
-        this.ngZone.runOutsideAngular(() => {
-            Observable.fromEvent(window, 'resize')
-                .debounceTime(100)
-                .subscribe(() => this.adjust());
-        });
+    // Listen for window resize events
+    this.ngZone.runOutsideAngular(() => {
+      Observable.fromEvent(window, 'resize')
+        .debounceTime(100)
+        .subscribe(() => this.adjust());
+    });
+
+    // Ensure we adjust the textarea if
+    // content is already present
+    this.adjust();
   }
 
   ngAfterViewInit() {
@@ -63,7 +71,7 @@ export class ElasticDirective implements AfterViewInit {
       return;
     }
 
-    throw new Error('The `elastic` attribute directive must be used on a `textarea` or an element that contains a `textarea`.');
+    throw new Error('The `fz-elastic` attribute directive must be used on a `textarea` or an element that contains a `textarea`.');
   }
 
   @HostListener('input')
