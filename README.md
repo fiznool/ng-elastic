@@ -22,7 +22,7 @@ npm install ng-elastic
 
 ### Angular 2+
 
-See the [sample repo](https://github.com/fiznool/ng-elastic-demo) for a full reference example.
+See the [sample repo](https://github.com/fiznool/angular2-elastic-demo) for a full reference example.
 
 **1. Import the `ElasticModule`:**
 
@@ -66,7 +66,7 @@ The textarea will also respond to changes from any one or two way bindings that 
 
 ### Ionic 2
 
-See the [sample repo](https://github.com/fiznool/ng-elastic-demo-ionic) for a full reference example.
+See the [sample repo](https://github.com/fiznool/angular2-elastic-demo-ionic) for a full reference example.
 
 1. Import the module as above.
 2. Use the directive on an `ion-textarea` instead:
