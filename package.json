@@ -1,6 +1,6 @@
 {
   "name": "ng-elastic",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "Angular 2+ directive to auto expand textareas according to their contents.",
   "module": "index.js",
   "main": "index.js",
