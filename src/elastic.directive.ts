@@ -9,8 +9,6 @@ import { Observable } from 'rxjs/Rx';
 export class ElasticDirective implements AfterViewInit {
   textareaEl: HTMLTextAreaElement;
 
-  private previousScrollHeight = 0;
-
   constructor(public element: ElementRef, private ngZone: NgZone, @Optional() public model: NgModel) {
     if (!model) {
       return;
@@ -80,12 +78,11 @@ export class ElasticDirective implements AfterViewInit {
   }
 
   adjust(): void {
-    if (!this.textareaEl || this.previousScrollHeight === this.textareaEl.scrollHeight) {
+    if (!this.textareaEl) {
       return;
     }
 
     this.textareaEl.style.height = 'auto';
     this.textareaEl.style.height = this.textareaEl.scrollHeight + "px";
-    this.previousScrollHeight = this.textareaEl.scrollHeight;
   }
 }
