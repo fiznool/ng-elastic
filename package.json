@@ -2,8 +2,9 @@
   "name": "ng-elastic",
   "version": "1.0.0-beta.2",
   "description": "Angular 2+ directive to auto expand textareas according to their contents.",
-  "module": "index.js",
-  "main": "index.js",
+  "module": "dist/index.js",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fiznool/ng-elastic.git"
@@ -20,9 +21,12 @@
     "url": "https://github.com/fiznool/ng-elastic/issues"
   },
   "scripts": {
-    "prepublish": "ngc"
+    "build": "rimraf dist && rimraf aot && ngc",
+    "prepublish": "npm run build"
   },
-  "typings": "./index.d.ts",
+  "files": [
+    "dist"
+  ],
   "homepage": "https://github.com/fiznool/ng-elastic#readme",
   "devDependencies": {
     "@angular/common": "4.0.2",
@@ -31,6 +35,7 @@
     "@angular/core": "4.0.2",
     "@angular/forms": "4.0.2",
     "@angular/platform-browser": "4.0.2",
+    "rimraf": "2.6.1",
     "rxjs": "5.3.0",
     "typescript": "2.2.2",
     "zone.js": "0.8.5"

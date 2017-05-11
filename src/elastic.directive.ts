@@ -9,8 +9,14 @@ import { Observable } from 'rxjs/Rx';
 export class ElasticDirective implements AfterViewInit {
   textareaEl: HTMLTextAreaElement;
 
-  constructor(public element: ElementRef, private ngZone: NgZone, @Optional() public model: NgModel) {
-    if (!model) {
+  constructor(
+    private element: ElementRef,
+    private ngZone: NgZone,
+    @Optional() private model: NgModel
+  ) {}
+
+  ngOnInit() {
+    if(!this.model) {
       return;
     }
 
@@ -18,7 +24,7 @@ export class ElasticDirective implements AfterViewInit {
     // This is more performant than listening for model changes
     // with angular's change detection cycle.
     let self = this;
-    let originalWriteValue = model.valueAccessor.writeValue;
+    let originalWriteValue = this.model.valueAccessor.writeValue;
     function writeValue(obj: any) {
       if (originalWriteValue) {
         // Invoke the original writeValue function.
@@ -29,7 +35,7 @@ export class ElasticDirective implements AfterViewInit {
       self.adjust();
     }
 
-    model.valueAccessor.writeValue = writeValue;
+    this.model.valueAccessor.writeValue = writeValue;
   }
 
   isTextarea(el: HTMLElement) {

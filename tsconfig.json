@@ -1,19 +1,18 @@
 {
   "compilerOptions": {
-    "noImplicitAny": true,
-    "module": "commonjs",
     "target": "es5",
+    "module": "commonjs",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "declaration": true,
-    "lib": ["es2015", "dom"]
+    "lib": ["es2015", "dom"],
+    "noImplicitAny": true,
+    "outDir": "dist",
+    "declaration": true
   },
-  "files": [
-    "index.ts",
-    "src/elastic.directive.ts",
-    "src/elastic.module.ts"
+  "include": [
+    "src/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "angularCompilerOptions": {
+    "genDir": "aot"
+  }
 }

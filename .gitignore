@@ -1,15 +1,9 @@
 # Node generated files
 node_modules
+dist
+aot
 npm-debug.log
 
 # OS generated files
 Thumbs.db
 .DS_Store
-
-# Ignored files
-*.js
-*.map
-*.d.ts
-*.ngfactory.ts
-*.ngsummary.json
-*.metadata.json
