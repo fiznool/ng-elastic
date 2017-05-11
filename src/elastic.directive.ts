@@ -1,13 +1,14 @@
-import { ElementRef, HostListener, Directive, AfterViewInit, Optional, NgZone } from '@angular/core';
+import { ElementRef, HostListener, Directive, AfterViewInit, Optional, OnInit, OnDestroy, NgZone } from '@angular/core';
 import { NgModel } from '@angular/forms';
-import { Observable } from 'rxjs/Rx';
+import { Observable, Subscription } from 'rxjs/Rx';
 
 @Directive({
   selector: '[fz-elastic]'
 })
 
-export class ElasticDirective implements AfterViewInit {
-  textareaEl: HTMLTextAreaElement;
+export class ElasticDirective implements OnInit, OnDestroy, AfterViewInit {
+  private modelSub: Subscription;
+  private textareaEl: HTMLTextAreaElement;
 
   constructor(
     private element: ElementRef,
@@ -20,46 +21,18 @@ export class ElasticDirective implements AfterViewInit {
       return;
     }
 
-    // Hijack NgModels ControlValueAccessor to detect when model is updated.
-    // This is more performant than listening for model changes
-    // with angular's change detection cycle.
-    let self = this;
-    let originalWriteValue = this.model.valueAccessor.writeValue;
-    function writeValue(obj: any) {
-      if (originalWriteValue) {
-        // Invoke the original writeValue function.
-        originalWriteValue.call(this, obj);
-      }
+    // Listen for changes to the underlying model
+    // to adjust the textarea size.
+    this.modelSub = this.model
+      .valueChanges
+      .debounceTime(100)
+      .subscribe(() => this.adjust());
+  }
 
-      // Adjust the textarea size.
-      self.adjust();
+  ngOnDestroy() {
+    if(this.modelSub) {
+      this.modelSub.unsubscribe();
     }
-
-    this.model.valueAccessor.writeValue = writeValue;
-  }
-
-  isTextarea(el: HTMLElement) {
-    return el.tagName === 'TEXTAREA';
-  }
-
-  setupTextarea(textareaEl: HTMLTextAreaElement) {
-    this.textareaEl = textareaEl;
-
-    // Set some necessary styles
-    const style = this.textareaEl.style;
-    style.overflow = 'hidden';
-    style.resize = 'none';
-
-    // Listen for window resize events
-    this.ngZone.runOutsideAngular(() => {
-      Observable.fromEvent(window, 'resize')
-        .debounceTime(100)
-        .subscribe(() => this.adjust());
-    });
-
-    // Ensure we adjust the textarea if
-    // content is already present
-    this.adjust();
   }
 
   ngAfterViewInit() {
@@ -80,10 +53,35 @@ export class ElasticDirective implements AfterViewInit {
 
   @HostListener('input')
   onInput(): void {
+    // This is run whenever the user changes the input.
     this.adjust();
   }
 
-  adjust(): void {
+  private isTextarea(el: HTMLElement) {
+    return el.tagName === 'TEXTAREA';
+  }
+
+  private setupTextarea(textareaEl: HTMLTextAreaElement) {
+    this.textareaEl = textareaEl;
+
+    // Set some necessary styles
+    const style = this.textareaEl.style;
+    style.overflow = 'hidden';
+    style.resize = 'none';
+
+    // Listen for window resize events
+    this.ngZone.runOutsideAngular(() => {
+      Observable.fromEvent(window, 'resize')
+        .debounceTime(100)
+        .subscribe(() => this.adjust());
+    });
+
+    // Ensure we adjust the textarea if
+    // content is already present
+    this.adjust();
+  }
+
+  private adjust(): void {
     if (!this.textareaEl) {
       return;
     }
