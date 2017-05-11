@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.0-beta.3] - 2017-05-11
+### Fixed
+- Textarea not shrinking when required
+- NPE when trying to setup listener for model changes
+
 ## [1.0.0-beta.2] - 2017-04-12
 ### Fixed
 - An issue where the textarea height was not calcuated on first load.
