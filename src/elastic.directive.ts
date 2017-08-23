@@ -9,6 +9,8 @@ import { Observable, Subscription } from 'rxjs/Rx';
 export class ElasticDirective implements OnInit, OnDestroy, AfterViewInit {
   private modelSub: Subscription;
   private textareaEl: HTMLTextAreaElement;
+  private defaultTextareaElHeight: number;
+  private clonedTextareaEl: HTMLTextAreaElement;
 
   constructor(
     private element: ElementRef,
@@ -63,11 +65,25 @@ export class ElasticDirective implements OnInit, OnDestroy, AfterViewInit {
 
   private setupTextarea(textareaEl: HTMLTextAreaElement) {
     this.textareaEl = textareaEl;
+    this.defaultTextareaElHeight = this.textareaEl.clientHeight;
 
     // Set some necessary styles
     const style = this.textareaEl.style;
     style.overflow = 'hidden';
     style.resize = 'none';
+
+    // Clone the textarea for height calculations
+    this.clonedTextareaEl = <HTMLTextAreaElement>this.textareaEl.cloneNode(false);
+    this.clonedTextareaEl.tabIndex = -1;
+    this.clonedTextareaEl.disabled = true;
+    this.clonedTextareaEl.style.height = '0';
+
+    // Remove margin top and bottom because it does not matter in
+    // calculating the height of textarea and they make useless space.
+    this.clonedTextareaEl.style.marginTop = '0';
+    this.clonedTextareaEl.style.marginBottom = '0';
+
+    this.textareaEl.parentNode.appendChild(this.clonedTextareaEl);
 
     // Listen for window resize events
     this.ngZone.runOutsideAngular(() => {
@@ -82,11 +98,12 @@ export class ElasticDirective implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private adjust(): void {
-    if (!this.textareaEl) {
-      return;
-    }
+    if(this.textareaEl && this.clonedTextareaEl) {
+      // Set the value of the cloned textarea to the actual value
+      this.clonedTextareaEl.value = this.textareaEl.value;
 
-    this.textareaEl.style.height = 'auto';
-    this.textareaEl.style.height = this.textareaEl.scrollHeight + "px";
+      // Allow reflow, then measure the cloned height and use to set real height
+      setTimeout(() => this.textareaEl.style.height = Math.max(this.clonedTextareaEl.scrollHeight, this.defaultTextareaElHeight) + 'px', 0);
+    }
   }
 }
