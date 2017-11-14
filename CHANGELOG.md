@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.0-beta.5] - 2017-11-14
+### Fixed
+- Broken imports #33
+
 ## [1.0.0-beta.4] - 2017-11-14
 ### Fixed
 - Compatibility with Angular 5
@@ -57,6 +61,7 @@ import { ElasticModule, ElasticDirective } from 'angular2-elastic';
 ### Added
 - Initial commit of elastic directive.
 
+[1.0.0-beta.5]: https://github.com/fiznool/angular2-elastic/compare/v1.0.0-beta.4...v1.0.0-beta.5
 [1.0.0-beta.4]: https://github.com/fiznool/angular2-elastic/compare/v1.0.0-beta.3...v1.0.0-beta.4
 [1.0.0-beta.3]: https://github.com/fiznool/angular2-elastic/compare/v1.0.0-beta.2...v1.0.0-beta.3
 [1.0.0-beta.2]: https://github.com/fiznool/angular2-elastic/compare/v1.0.0-beta.1...v1.0.0-beta.2
