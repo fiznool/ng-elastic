@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.0-beta.4] - 2017-11-14
+### Fixed
+- Compatibility with Angular 5
+
+### Added
+- on-resize output event when textarea is resized.
+
 ## [1.0.0-beta.3] - 2017-05-11
 ### Fixed
 - Textarea not shrinking when required
@@ -50,6 +57,10 @@ import { ElasticModule, ElasticDirective } from 'angular2-elastic';
 ### Added
 - Initial commit of elastic directive.
 
+[1.0.0-beta.4]: https://github.com/fiznool/angular2-elastic/compare/v1.0.0-beta.3...v1.0.0-beta.4
+[1.0.0-beta.3]: https://github.com/fiznool/angular2-elastic/compare/v1.0.0-beta.2...v1.0.0-beta.3
+[1.0.0-beta.2]: https://github.com/fiznool/angular2-elastic/compare/v1.0.0-beta.1...v1.0.0-beta.2
+[1.0.0-beta.1]: https://github.com/fiznool/angular2-elastic/compare/v0.13.0...v1.0.0-beta.1
 [0.13.0]: https://github.com/fiznool/angular2-elastic/compare/v0.12.0...v0.13.0
 [0.12.0]: https://github.com/fiznool/angular2-elastic/compare/v0.11.1...v0.12.0
 [0.11.1]: https://github.com/fiznool/angular2-elastic/compare/v0.11.0...v0.11.1
