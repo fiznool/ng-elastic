@@ -1,6 +1,9 @@
 import { ElementRef, HostListener, Directive, AfterViewInit, Optional, OnInit, OnDestroy, NgZone } from '@angular/core';
 import { NgModel } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs/Rx';
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/debounceTime';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 @Directive({
   selector: '[fz-elastic]'
