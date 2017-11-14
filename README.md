@@ -64,7 +64,18 @@ That's it! Your textarea will now grow and shrink as you type.
 
 The textarea will also respond to changes from any one or two way bindings that are setup, e.g. with `[(ngModel)]`.
 
-### Ionic 2
+
+**3. Output events**
+
+A single output event is currently supported, `(on-resize)`:
+
+``` html
+<textarea (on-resize)="myCustomFunc()"></textarea>
+```
+
+This will be fired when the textarea is resized, and will be passed a single argument: a number representing the new height, in pixels.
+
+### Ionic 2/3
 
 See the [sample repo](https://github.com/fiznool/angular2-elastic-demo-ionic) for a full reference example.
 
