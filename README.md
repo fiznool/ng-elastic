@@ -1,3 +1,9 @@
+## Seeking Maintainer
+
+_Unfortunately I no longer have enough time to dedicate to this library. Please let me know in [this issue](../../issues/35) if you are interested in taking over this project._
+
+---
+
 # ng-elastic
 
 Automatically grows and shrinks textareas based on their content. Supports both regular Angular 2+ `<textarea>` and Ionic 2+ `<ion-textarea>` controls.
